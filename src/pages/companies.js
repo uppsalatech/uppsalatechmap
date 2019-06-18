@@ -14,7 +14,7 @@ const IndexPage = ({ pageContext }) => (
     <h2>Discover tech companies in Uppsala</h2>
 
     <div className="cards">
-      {pageContext.companies.filter((v) => v.name).map((v, i) => {
+      {pageContext.companies && pageContext.companies.filter((v) => v.name).map((v, i) => {
         return (<div className="card" key={i}>
           <a href={v.url} className="name">{v.name}</a>
           <p>{v.description}</p>

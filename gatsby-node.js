@@ -16,10 +16,10 @@ exports.createPages = async ({ actions: { createPage } }) => {
 
     console.log("Companies", companies);
     // Create a page that lists all Pokémon.
-    createPage({
-      path: `/comp2`,
-      component: require.resolve("./src/pages/companies.js"),
-      context: { companies },  })
+    // createPage({
+    //   path: `/comp2`,
+    //   component: require.resolve("./src/pages/companies.js"),
+    //   context: { companies },  })
 
       createPage({
         path: `/`,
