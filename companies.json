@@ -62,6 +62,37 @@
   , "description": "Web, apps, games and VR."
   , "url": "https://studioakademi.com/"
   },
+  { "name": "Connectel"
+  , "description": "IT & telecom services, consulting and support."
+  , "url": "https://www.connectel.co"
+  , "jobs_url": "https://connectel.teamtailor.com/"
+  },
+  { "name": "Page Anchor"
+  , "description": "Prevent your book form closing (physical product)."
+  , "url": "https://www.page-anchor.com/"
+  },
+  { "name": "Lampa, Hellberg & Partners"
+  , "description": "Digital studio, focus on UX/UI-design and business strategy."
+  , "url": "https://lampahellberg.se/"
+  },
+  { "name": "Exor IT-byrå"
+  , "description": "Avancerad webbutveckling och design."
+  , "url": "https://exor.se/"
+  },
+  { "name": "Tmpl"
+  , "description": "En smart plattform för boendet, kontoret och staden vi lever i."
+  , "url": "https://www.tmpl.se/"
+  , "jobs_url": "https://www.tmpl.se/jobb/"
+  },
+  { "name": "Cheerful Coders"
+  , "description": "Web development consulting."
+  , "url": "http://cheerfulcoders.se/"
+  },
+  { "name": "LeanOn"
+  , "description": "Smarta systemlösningar som digitaliserar finansbranschen."
+  , "url": "https://leanon.se/"
+  , "jobs_url": "https://leanon.se/jobb/"
+  },
   { "question": "How do I add my company to this list?"
   , "answer": [ "1) Make a copy of the last company entry above this and put it right above this entry."
               , "2) Edit the second of those entries and replace with your company information."
