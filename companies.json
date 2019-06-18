@@ -8,10 +8,33 @@
   , "url": "https://www.caspeco.se/"
   , "jobs_url": "https://www.caspeco.se/jobba-hos-oss/"
   },
+  { "name": "Politicast"
+  , "description": "The first independent podcasting platform dedicated to politics."
+  , "url": "https://www.politicast.fm/"
+  },
+  { "name": "Favro"
+  , "description": "Planning and collaboration tool and organizational flow."
+  , "url": "https://www.favro.com/careers"
+  },
+  { "name": "Freespee"
+  , "description": "Freespee makes it faster and easier for customers to talk to sales agents."
+  , "url": "https://www.freespee.com/"
+  , "jobs_url": "https://www.freespee.com/careers/"
+  },
+  { "name": "Årsredovisning Online"
+  , "description": "Gör din årsredovisning själv och var klar på 15 minuter."
+  , "url": "https://www.arsredovisning-online.se/"
+  },
+  { "name": "EntryScape"
+  , "description": "Lösningar för hållbar informationshantering."
+  , "url": "https://entryscape.com/"
+  , "jobs_url": "https://entryscape.com/sv/karriar/"
+  },
   { "question": "How do I add my company to this list?"
   , "answer": [ "1) Make a copy of the last company entry above this and put it right above this entry."
               , "2) Edit the second of those entries and replace with your company information."
-              , "3) Create a pull request for this file."
+              , "3) Be sure to keep or add a jobs_url if your company is recruiting."
+              , "4) Create a pull request for this file."
               ]
   }
 ]
