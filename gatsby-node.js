@@ -8,8 +8,6 @@
 
 var fs = require("fs");
 
-console.log(fs);
-
 exports.createPages = async ({ actions: { createPage } }) => {
     // `getPokemonData` is a function that fetches our data
     const companies = JSON.parse(fs.readFileSync('./companies.json', { encoding: 'utf-8' }));

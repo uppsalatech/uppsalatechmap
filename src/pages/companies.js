@@ -24,7 +24,7 @@ const IndexPage = ({ pageContext }) => (
     </div>
 
     <div style={{marginTop:30, textAlign: "center"}}>
-      <a href="https://github.com/uppsalatech/uppsalatechmap/edit/master/companies.json">Add your own company</a>
+      <a href="https://github.com/uppsalatech/uppsalatechmap/edit/master/companies.json">Add your own company to the list</a>
     </div>
 
 
