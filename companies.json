@@ -1,0 +1,17 @@
+[ { "name": "46elks"
+  , "description": "Ett enkelt API för SMS och telefoni. Telecom infrastructure for the web."
+  , "url": "https://www.46elks.com/"
+  , "jobs_url": "https://46elks.com/jobs/"
+  },
+  { "name": "Caspeco"
+  , "description": "Payroll management, budgeting, scheduling and booking systems."
+  , "url": "https://www.caspeco.se/"
+  , "jobs_url": "https://www.caspeco.se/jobba-hos-oss/"
+  },
+  { "question": "How do I add my company to this list?"
+  , "answer": [ "1) Make a copy of the last company entry above this and put it right above this entry."
+              , "2) Edit the second of those entries and replace with your company information."
+              , "3) Create a pull request for this file."
+              ]
+  }
+]
