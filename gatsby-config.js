@@ -4,6 +4,7 @@ module.exports = {
     description: `Discover tech companies in Uppsala`,
     author: `@gatsbyjs`,
   },
+  pathPrefix: "/uppsalatechmap",
   plugins: [
     `gatsby-plugin-react-helmet`,
     // {
