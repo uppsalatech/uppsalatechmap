@@ -30,6 +30,38 @@
   , "url": "https://entryscape.com/"
   , "jobs_url": "https://entryscape.com/sv/karriar/"
   },
+  { "name": "Imint"
+  , "description": "Imaging middleware for mobile phones."
+  , "url": "http://imint.se/"
+  , "jobs_url": "https://weareimint.com/about/career/"
+  },
+  { "name": "IAR Systems"
+  , "description": "Software tools for building embedded applications, compilers, debuggers."
+  , "url": "https://www.iar.com/"
+  , "jobs_url": "https://www.iar.com/about-us/careers/"
+  },
+  { "name": "IP Only"
+  , "description": "Software tools for building embedded applications, compilers, debuggers."
+  , "url": "http://ip-only.se/"
+  , "jobs_url": "https://www.ip-only.se/om/karriar/"
+  },
+  { "name": "Valueguard"
+  , "description": "Information för en bättre bostadsmarknad."
+  , "url": "https://valueguard.se/"
+  , "jobs_url": "https://valueguard.se/article/38"
+  },
+  { "name": "EasyTelecom"
+  , "description": "Telefonoperatör som utvecklar innovativa tjänster i teknikens framkant."
+  , "url": "http://www.easytelecom.se/"
+  },
+  { "name": "F&A Forecasting"
+  , "description": "Web based forecasting platform."
+  , "url": "http://faforecasting.com/"
+  },
+  { "name": "Akademi"
+  , "description": "Web, apps, games and VR."
+  , "url": "https://studioakademi.com/"
+  },
   { "question": "How do I add my company to this list?"
   , "answer": [ "1) Make a copy of the last company entry above this and put it right above this entry."
               , "2) Edit the second of those entries and replace with your company information."
