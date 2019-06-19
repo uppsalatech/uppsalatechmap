@@ -8,6 +8,7 @@ const IndexPage = ({ pageContext }) => (
   <Layout>
     <SEO title="Home" />
     <h2>Discover tech companies in Uppsala</h2>
+    <p>Join the conversation in the Uppsala Tech Community Slack by emailing <a href="mailto:hello@uppsalatech.se">hello@uppsalatech.se</a>.</p>
 
     <div className="cards">
       {pageContext.companies && pageContext.companies.filter((v) => v.name).map((v, i) => {

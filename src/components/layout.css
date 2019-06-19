@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Bungee+Shade&display=swap&text=UppsalaTechMap');
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -624,30 +626,77 @@ pre tt:after {
 
 .cards {
   display: grid;
- 
-grid-template-columns: repeat(3, 1fr);
-grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
- 
-grid-auto-rows: auto;
- 
-grid-gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: auto;
+  grid-gap: 2rem;
 }
 
 .card {
-   
-border: 2px solid #e7e7e7;
- 
-border-radius: 4px;
- 
-padding: .5rem;
+  border-radius: 4px;
+  padding: 3rem;
+  /*box-shadow: 0 0 10px rgba(0,0,0,.2);*/
+  background: white;
+  position: relative;
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  -webkit-font-smoothing: subpixel-antialiased;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
+.card::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  background:white;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Create the hidden pseudo-element */
+/* include the shadow for the end state */
+.card::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Fade in the pseudo-element with the bigger shadow */
+.card:hover::after,.card:hover::before {
+  opacity: 1;
+  -webkit-transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
+}
+
+
 .name {
-  font-size:1.5rem;
+  font-size: 1.5rem;
   margin-bottom: 1rem;
-  display: block;
+  display: inline-block;
+  font-family: 'B612 Mono';
+  text-decoration: none;
+  color: #2f2f2f;
+  border-bottom: 2px solid #d9d9d9;
 }
 
 .jobs_url {
   font-size:0.8rem;
+  color: #7481e1;
 }
