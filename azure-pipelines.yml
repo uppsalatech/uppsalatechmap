@@ -19,5 +19,5 @@ steps:
     npm install
     git config --local user.name "Azure Pipelines By Anders"
     git config --local user.email "anders@andersaberg.com"
-    npm run deploy
+    npm run deploy -- -r https://$(github_pat)@github.com/uppsalatech/uppsalatechmap.git    
   displayName: 'npm install and deploy'
