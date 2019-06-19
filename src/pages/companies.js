@@ -11,7 +11,7 @@ import SEO from "../components/seo"
 const IndexPage = ({ pageContext }) => (
   <Layout>
     <SEO title="Home" />
-    <h2>Discover tech companies in Uppsala</h2>
+    <h2>Discover tech companies in Uppsala.</h2>
 
     <div className="cards">
       {pageContext.companies && pageContext.companies.filter((v) => v.name).map((v, i) => {
