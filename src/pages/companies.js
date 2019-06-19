@@ -7,7 +7,7 @@ import SEO from "../components/seo"
 const IndexPage = ({ pageContext }) => (
   <Layout>
     <SEO title="Home" />
-    <h2>Discover tech companies in Uppsala</h2>
+    <h2 style={{marginTop: "2rem"}}>Discover tech companies in Uppsala</h2>
     <p>Join the conversation in the Uppsala Tech Community Slack by emailing <a href="mailto:hello@uppsalatech.se">hello@uppsalatech.se</a>.</p>
 
     <div className="cards">
