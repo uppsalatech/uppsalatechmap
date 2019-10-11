@@ -3,8 +3,7 @@ module.exports = {
     title: `Uppsala Tech Map`,
     description: `Discover tech companies in Uppsala`,
     author: `@gatsbyjs`,
-  },
-  pathPrefix: "/",
+  },  
   plugins: [
     `gatsby-plugin-react-helmet`,
     // {
