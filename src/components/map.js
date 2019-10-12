@@ -24,7 +24,9 @@ class Map extends React.Component {
           return (
             <Marker position={[company.lat, company.lng]}>
               <Popup>
-                {company.name}
+                <a href={`#${company.name}-anchor`}>
+                  {company.name}
+                </a>
               </Popup>
             </Marker>
             )
