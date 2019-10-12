@@ -10,7 +10,7 @@ class Map extends React.Component {
       // Position for Uppsala city center-ish
       lat: 59.858266,
       lng: 17.638184,
-      zoom: 14,
+      zoom: 13,
     }
   }
 
