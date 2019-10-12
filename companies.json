@@ -2,11 +2,15 @@
   , "description": "Ett enkelt API för SMS och telefoni. Telecom infrastructure for the web."
   , "url": "https://www.46elks.com/"
   , "jobs_url": "https://46elks.com/jobs/"
+  , "lat": "59.858111"
+  , "lng": "17.639653"
   },
   { "name": "Caspeco"
   , "description": "Vi hjälper krogar fokusera på gäster & god mat och förenklar allt annat med enkla appar och system. Booking, Checkout, Personnel, Analytics."
   , "url": "https://www.caspeco.se/"
   , "jobs_url": "https://www.caspeco.se/jobba-hos-oss/"
+  , "lat": "59.858108"
+  , "lng": "17.642728"
   },
   { "name": "Politicast"
   , "description": "The first independent podcasting platform dedicated to politics."
