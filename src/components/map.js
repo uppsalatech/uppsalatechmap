@@ -15,7 +15,6 @@ class Map extends React.Component {
   }
 
   getCompanyMarkers = () => {
-    console.log(typeof this.props.companies)
     // Fallback if no companies are loaded
     if (!this.props.companies) return <Marker position={[this.state.lat, this.state.lng]} />;
 
