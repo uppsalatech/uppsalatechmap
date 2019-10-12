@@ -700,3 +700,14 @@ pre tt:after {
   font-size:0.8rem;
   color: #7481e1;
 }
+
+.map-container {
+  height: 250px;
+  margin: 16px 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.leaflet-container {
+  height: 100%;
+  border-radius: 4px;
+}
