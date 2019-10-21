@@ -1,7 +1,18 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import { Map as LeafletMap, TileLayer, Marker, Popup } from "react-leaflet";
+import { Map as LeafletMap, TileLayer, Marker, Popup  } from "react-leaflet";
+import L from "leaflet";
+
+const markerIcon = new L.Icon({
+    iconUrl: require("../assets/marker-glow.png"),
+    popupAnchor: new L.Point(22, 0),
+    shadowUrl: require("../assets/marker-shadow.png"),
+    shadowSize: new L.Point(60, 60),
+    iconAnchor: new L.Point(0, 0),
+    iconSize: new L.Point(45, 60),
+    shadowAnchor: new L.Point(0, 0),
+});
 
 class Map extends React.Component {
   constructor(props) {
@@ -22,7 +33,9 @@ class Map extends React.Component {
         if (Boolean(company.lat) && Boolean(company.lng)) {
           const anchorLink = company.name.replace(/\s/g, '');
           return (
-            <Marker position={[company.lat, company.lng]}>
+            <Marker 
+              icon={markerIcon}
+              position={[company.lat, company.lng]}>
               <Popup>
                 <a href={`#${anchorLink}`}>
                   {company.name}
