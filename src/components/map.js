@@ -31,15 +31,14 @@ class Map extends React.Component {
 
     return this.props.companies.map((company) => {
         if (Boolean(company.lat) && Boolean(company.lng)) {
-          const anchorLink = company.name.replace(/\s/g, '');
           return (
             <Marker 
               icon={markerIcon}
               position={[company.lat, company.lng]}>
               <Popup>
-                <a href={`#${anchorLink}`}>
+                <p>
                   {company.name}
-                </a>
+                </p>
               </Popup>
             </Marker>
             )
