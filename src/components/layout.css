@@ -700,3 +700,26 @@ pre tt:after {
   font-size:0.8rem;
   color: #7481e1;
 }
+
+.map-container {
+  height: 245px;
+  margin: 16px 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.leaflet-container {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.leaflet-popup-content-wrapper p {
+  font-family: monospace;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: rebeccapurple
+}
+
+.leaflet-popup-content-close-icon {
+  color: rebeccapurple;
+}
