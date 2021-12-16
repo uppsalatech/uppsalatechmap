@@ -103,6 +103,16 @@
   , "url": "https://it-huset.se/"
   , "jobs_url": "https://dinframtid.it-huset.se/"
   },
+  { "name": "Olink Proteomics"
+  , "description": "Olink enables scientists to make research decisions more quickly and confidently through robust, multiplex protein biomarker analysis."
+  , "url": "https://olink.com/"
+  , "jobs_url": "https://careers.olink.com/"
+  },
+  { "name": "Aurora Innovation"
+  , "description": "Digital plattform för ökad tillgänglighet i vården"
+  , "url": "https://aurorainnovation.com"
+  , "jobs_url": "https://aurorainnovation.com/sv/om-oss/jobba-hos-oss/"
+  },
   { "question": "How do I add my company to this list?"
   , "answer": [ "1) Make a copy of the last company entry above this and put it right above this entry."
               , "2) Edit the second of those entries and replace with your company information."
