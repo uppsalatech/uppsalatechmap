@@ -98,6 +98,11 @@
   , "url": "https://animech.com"
   , "jobs_url": "https://careers.animech.com"
   },
+  { "name": "IT-HUSET"
+  , "description": "IT-Konsulter som gör skillnad hos våra kunder"
+  , "url": "https://it-huset.se/"
+  , "jobs_url": "https://dinframtid.it-huset.se/"
+  },
   { "question": "How do I add my company to this list?"
   , "answer": [ "1) Make a copy of the last company entry above this and put it right above this entry."
               , "2) Edit the second of those entries and replace with your company information."
