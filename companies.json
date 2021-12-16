@@ -98,6 +98,11 @@
   , "url": "https://animech.com"
   , "jobs_url": "https://careers.animech.com"
   },
+  { "name": "IT-HUSET"
+  , "description": "IT-Konsulter som gör skillnad hos våra kunder"
+  , "url": "https://it-huset.se/"
+  , "jobs_url": "https://dinframtid.it-huset.se/"
+  },
   { "name": "Olink Proteomics"
   , "description": "Olink enables scientists to make research decisions more quickly and confidently through robust, multiplex protein biomarker analysis."
   , "url": "https://olink.com/"
