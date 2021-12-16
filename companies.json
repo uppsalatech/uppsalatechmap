@@ -98,7 +98,12 @@
   , "url": "https://animech.com"
   , "jobs_url": "https://careers.animech.com"
   },
-   { "name": "Aurora Innovation"
+  { "name": "Olink Proteomics"
+  , "description": "Olink enables scientists to make research decisions more quickly and confidently through robust, multiplex protein biomarker analysis."
+  , "url": "https://olink.com/"
+  , "jobs_url": "https://careers.olink.com/"
+  },
+  { "name": "Aurora Innovation"
   , "description": "Digital plattform för ökad tillgänglighet i vården"
   , "url": "https://aurorainnovation.com"
   , "jobs_url": "https://aurorainnovation.com/sv/om-oss/jobba-hos-oss/"
