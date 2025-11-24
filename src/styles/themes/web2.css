@@ -1,0 +1,271 @@
+/* Web 2.0 Theme - Glossy, shiny 2000s style */
+
+body {
+  background: linear-gradient(to bottom, #f0f4f8 0%, #d9e2ec 100%);
+  position: relative;
+}
+
+/* Subtle texture */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.web2-header {
+  background: linear-gradient(to bottom, #0084ff 0%, #0066cc 100%) !important;
+  position: relative;
+  overflow: hidden;
+  border-bottom: none;
+  box-shadow: 0 4px 20px rgba(0, 132, 255, 0.4);
+}
+
+/* Glossy reflection on header */
+.web2-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.web2-header h1 {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+}
+
+.web2-title {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif !important;
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: #fff !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  letter-spacing: -1px;
+  margin-bottom: 0.5rem !important;
+}
+
+.web2-card {
+  background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%) !important;
+  border: 1px solid #d0d7de !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Glossy highlight on top */
+.web2-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 16px 16px 0 0;
+}
+
+.web2-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.web2-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.12),
+    0 12px 40px rgba(0, 132, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Ribbon badge instead of action word */
+.web2-card::after {
+  content: '✓';
+  position: absolute;
+  top: var(--action-top, 12px);
+  right: var(--action-right, 12px);
+  bottom: var(--action-bottom, auto);
+  left: var(--action-left, auto);
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--action-color, #00d084) 0%, var(--action-color-dark, #00a86b) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 2;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.web2-card:hover::after {
+  opacity: 1;
+  transform: scale(1.1) rotate(15deg);
+}
+
+.web2-name {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif !important;
+  font-size: 1.6rem !important;
+  font-weight: 600 !important;
+  color: #0f172a !important;
+  text-decoration: none !important;
+  border-bottom: 3px solid transparent !important;
+  padding-bottom: 0.5rem !important;
+  display: inline-block;
+  background: linear-gradient(to right, #0084ff, #00d084);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.2s ease;
+}
+
+.web2-name:hover {
+  transform: translateX(4px);
+  border-bottom-color: #0084ff !important;
+}
+
+.web2-card p {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  line-height: 1.7;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.web2-jobs {
+  display: inline-block;
+  padding: 0.7rem 1.8rem !important;
+  background: linear-gradient(to bottom, #0084ff 0%, #0066cc 100%) !important;
+  color: #fff !important;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  border: none !important;
+  border-radius: 24px !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 0.3px;
+  box-shadow:
+    0 4px 12px rgba(0, 132, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glossy shine on button */
+.web2-jobs::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+  border-radius: 24px 24px 0 0;
+}
+
+.web2-jobs:hover {
+  background: linear-gradient(to bottom, #00a3ff 0%, #0084ff 100%) !important;
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 20px rgba(0, 132, 255, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Section titles */
+h2.web2-title {
+  color: #0f172a;
+  text-shadow: none;
+  background: linear-gradient(to right, #0084ff, #00d084);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Stat badges */
+.web2-stat-badge {
+  background: linear-gradient(135deg, #0084ff 0%, #0066cc 100%);
+  border: none;
+  box-shadow:
+    0 8px 24px rgba(0, 132, 255, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+.web2-stat-badge::before {
+  border: none;
+}
+
+.web2-stat-badge::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+  border-radius: 50%;
+}
+
+.web2-stat-badge.hiring-badge {
+  background: linear-gradient(135deg, #00d084 0%, #00a86b 100%);
+  box-shadow:
+    0 8px 24px rgba(0, 208, 132, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+.web2-stat-badge .stat-number {
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.web2-stat-badge .stat-label {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Card entrance animations */
+.card-entrance {
+  animation: card-slide-in 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes card-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add some glossy hover effects */
+.web2-card:hover {
+  background: linear-gradient(to bottom, #ffffff 0%, #f0f4f8 100%) !important;
+}

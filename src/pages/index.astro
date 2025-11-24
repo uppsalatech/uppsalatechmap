@@ -1,31 +1,45 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ThemeSelector from '../components/ThemeSelector.astro';
 import companies from '../data/companies.json';
+import { themes, defaultTheme, getTheme } from '../config/themes';
 import '../styles/global.css';
-import '../styles/pop-art.css';
+
+// Get theme from URL parameter (will be handled by client-side JS)
+// Default to pop-art for SSG
+const currentTheme = getTheme(defaultTheme);
+
+// Import theme CSS dynamically
+if (currentTheme.id === 'pop-art') {
+  await import('../styles/themes/pop-art.css');
+} else if (currentTheme.id === 'web2') {
+  await import('../styles/themes/web2.css');
+}
 
 const validCompanies = companies.filter((company) => company.name);
 const hiringCount = validCompanies.filter((company) => company.jobs_url).length;
 ---
 
 <Layout title="Uppsala Tech Map">
+  <ThemeSelector />
 
 
-  <h2 class="pop-art-title" style="margin-top: 2rem;">Discover Tech Companies!</h2>
+
+  <h2 class="theme-title" data-theme-target="title" style="margin-top: 2rem;">Discover Tech Companies!</h2>
   <p>
     Join the conversation in the Uppsala Tech Community Slack by emailing
-    <a href="mailto:hello@uppsalatech.se" style="color: #ff0055; font-weight: bold;">hello@uppsalatech.se</a>.
+    <a href="mailto:hello@uppsalatech.se" class="theme-link" data-theme-target="link">hello@uppsalatech.se</a>.
   </p>
 
   <div class="cards">
     {validCompanies.map((company, index) => {
         const id = company.name!.replace(/\s/g, '');
         return (
-          <div class="card pop-art-card" id={id} data-index={index}>
-            <a href={company.url} class="name pop-art-name">{company.name}</a>
+          <div class="card theme-card" id={id} data-index={index} data-theme-target="card">
+            <a href={company.url} class="name theme-name" data-theme-target="name">{company.name}</a>
             <p>{company.description}</p>
             {company.jobs_url && (
-              <a href={company.jobs_url} class="jobs_url pop-art-jobs">Hiring!</a>
+              <a href={company.jobs_url} class="jobs_url theme-jobs" data-theme-target="jobs">Hiring!</a>
             )}
           </div>
         );
@@ -33,20 +47,81 @@ const hiringCount = validCompanies.filter((company) => company.jobs_url).length;
   </div>
 
   <div style="margin-top: 30px; text-align: center;">
-    <a href="https://github.com/uppsalatech/uppsalatechmap/edit/master/companies.json" style="color: #ff0055; font-weight: bold; text-decoration: underline;">
+    <a href="https://github.com/uppsalatech/uppsalatechmap/edit/master/companies.json" class="theme-link" data-theme-target="link">
       Add your own company to the list
     </a>
   </div>
 </Layout>
 
 <script>
-  // Random action words for comic effect
-  const actionWords = ["POW!", "BAM!", "ZAP!", "WHAM!", "BOOM!", "CRASH!", "KAPOW!", "THWACK!", "BIFF!", "SOCK!"];
-  const colors = ["#ffff00", "#00d9ff", "#ff0055", "#ff6b00"];
+  import { themes, defaultTheme } from '../config/themes';
 
-  // Randomize action words on cards
-  document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll<HTMLElement>('.pop-art-card');
+  // Get current theme from URL or localStorage
+  function getCurrentTheme(): string {
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlTheme = urlParams.get('theme');
+
+    if (urlTheme && themes[urlTheme]) {
+      localStorage.setItem('theme', urlTheme);
+      return urlTheme;
+    }
+
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme && themes[storedTheme]) {
+      return storedTheme;
+    }
+
+    return defaultTheme;
+  }
+
+  // Apply theme classes
+  function applyTheme(themeId: string) {
+    const theme = themes[themeId];
+    if (!theme) return;
+
+    // Update header
+    const header = document.querySelector('header');
+    if (header) {
+      header.className = `${themeId}-header`;
+    }
+
+    // Update all theme-targeted elements
+    document.querySelectorAll('[data-theme-target="card"]').forEach(el => {
+      el.className = `card ${themeId}-card`;
+    });
+
+    document.querySelectorAll('[data-theme-target="name"]').forEach(el => {
+      el.className = `name ${themeId}-name`;
+    });
+
+    document.querySelectorAll('[data-theme-target="jobs"]').forEach(el => {
+      el.className = `jobs_url ${themeId}-jobs`;
+    });
+
+    document.querySelectorAll('[data-theme-target="title"]').forEach(el => {
+      el.className = `${themeId}-title`;
+    });
+
+    document.querySelectorAll('[data-theme-target="stat-badge"]').forEach((el, index) => {
+      const baseClass = index === 0 ? 'stat-badge' : 'stat-badge hiring-badge';
+      el.className = `${baseClass} ${themeId}-stat-badge`;
+    });
+
+    document.querySelectorAll('[data-theme-target="link"]').forEach(el => {
+      if (themeId === 'pop-art') {
+        (el as HTMLElement).style.color = '#ff0055';
+      } else if (themeId === 'web2') {
+        (el as HTMLElement).style.color = '#0084ff';
+      }
+    });
+  }
+
+  // Theme-specific initialization
+  function initializeTheme(themeId: string) {
+    const theme = themes[themeId];
+    if (!theme) return;
+
+    const cards = document.querySelectorAll<HTMLElement>('[data-theme-target="card"]');
 
     cards.forEach((card, index) => {
       // Add entrance animation delay
@@ -54,41 +129,55 @@ const hiringCount = validCompanies.filter((company) => company.jobs_url).length;
       card.style.animationDelay = `${delay}ms`;
       card.classList.add('card-entrance');
 
-      // Set random action word and color
-      const randomWord = actionWords[Math.floor(Math.random() * actionWords.length)];
-      const randomColor = colors[Math.floor(Math.random() * colors.length)];
-      const randomRotation = Math.floor(Math.random() * 16) + 10; // 10-25 degrees
+      if (themeId === 'pop-art' && theme.actionWords && theme.colors) {
+        // Pop Art specific: random action words
+        const randomWord = theme.actionWords[Math.floor(Math.random() * theme.actionWords.length)];
+        const randomColor = theme.colors[Math.floor(Math.random() * theme.colors.length)];
+        const randomRotation = Math.floor(Math.random() * 16) + 10;
 
-      // Random position (top-right, top-left, bottom-right, bottom-left)
-      const positions = [
-        { top: '-40px', right: '-40px', bottom: 'auto', left: 'auto', topHover: '-20px', rightHover: '-20px', bottomHover: 'auto', leftHover: 'auto' },
-        { top: '-40px', right: 'auto', bottom: 'auto', left: '-40px', topHover: '-20px', rightHover: 'auto', bottomHover: 'auto', leftHover: '-20px' },
-        { top: 'auto', right: '-40px', bottom: '-40px', left: 'auto', topHover: 'auto', rightHover: '-20px', bottomHover: '-20px', leftHover: 'auto' },
-        { top: 'auto', right: 'auto', bottom: '-40px', left: '-40px', topHover: 'auto', rightHover: 'auto', bottomHover: '-20px', leftHover: '-20px' }
-      ];
-      const randomPosition = positions[Math.floor(Math.random() * positions.length)];
+        const positions = [
+          { top: '-40px', right: '-40px', bottom: 'auto', left: 'auto', topHover: '-20px', rightHover: '-20px', bottomHover: 'auto', leftHover: 'auto' },
+          { top: '-40px', right: 'auto', bottom: 'auto', left: '-40px', topHover: '-20px', rightHover: 'auto', bottomHover: 'auto', leftHover: '-20px' },
+          { top: 'auto', right: '-40px', bottom: '-40px', left: 'auto', topHover: 'auto', rightHover: '-20px', bottomHover: '-20px', leftHover: 'auto' },
+          { top: 'auto', right: 'auto', bottom: '-40px', left: '-40px', topHover: 'auto', rightHover: 'auto', bottomHover: '-20px', leftHover: '-20px' }
+        ];
+        const randomPosition = positions[Math.floor(Math.random() * positions.length)];
 
-      card.setAttribute('data-action-word', randomWord);
-      card.style.setProperty('--action-color', randomColor);
-      card.style.setProperty('--action-rotation', `${randomRotation}deg`);
-      card.style.setProperty('--action-top', randomPosition.top);
-      card.style.setProperty('--action-right', randomPosition.right);
-      card.style.setProperty('--action-bottom', randomPosition.bottom);
-      card.style.setProperty('--action-left', randomPosition.left);
-      card.style.setProperty('--action-top-hover', randomPosition.topHover);
-      card.style.setProperty('--action-right-hover', randomPosition.rightHover);
-      card.style.setProperty('--action-bottom-hover', randomPosition.bottomHover);
-      card.style.setProperty('--action-left-hover', randomPosition.leftHover);
+        card.setAttribute('data-action-word', randomWord);
+        card.style.setProperty('--action-color', randomColor);
+        card.style.setProperty('--action-rotation', `${randomRotation}deg`);
+        card.style.setProperty('--action-top', randomPosition.top);
+        card.style.setProperty('--action-right', randomPosition.right);
+        card.style.setProperty('--action-bottom', randomPosition.bottom);
+        card.style.setProperty('--action-left', randomPosition.left);
+        card.style.setProperty('--action-top-hover', randomPosition.topHover);
+        card.style.setProperty('--action-right-hover', randomPosition.rightHover);
+        card.style.setProperty('--action-bottom-hover', randomPosition.bottomHover);
+        card.style.setProperty('--action-left-hover', randomPosition.leftHover);
+      } else if (themeId === 'web2' && theme.colors) {
+        // Web 2.0 specific: glossy badge colors
+        const colorPairs: Array<[string, string]> = [
+          ['#0084ff', '#0066cc'],
+          ['#ff6b35', '#e65100'],
+          ['#00d084', '#00a86b'],
+          ['#9b59b6', '#8e44ad']
+        ];
+        const randomPair = colorPairs[Math.floor(Math.random() * colorPairs.length)];
+
+        const positions = ['12px', 'auto'];
+        const randomPos = Math.floor(Math.random() * 4);
+
+        card.style.setProperty('--action-color', randomPair[0]);
+        card.style.setProperty('--action-color-dark', randomPair[1]);
+        card.style.setProperty('--action-top', randomPos < 2 ? '12px' : 'auto');
+        card.style.setProperty('--action-right', randomPos % 2 === 0 ? '12px' : 'auto');
+        card.style.setProperty('--action-bottom', randomPos >= 2 ? '12px' : 'auto');
+        card.style.setProperty('--action-left', randomPos % 2 === 1 ? '12px' : 'auto');
+      }
     });
+  }
 
-    // Animate counters
-    const statNumbers = document.querySelectorAll('.stat-number');
-    statNumbers.forEach(stat => {
-      const target = parseInt(stat.getAttribute('data-target') || '0');
-      animateCounter(stat, target);
-    });
-  });
-
+  // Animate counters
   function animateCounter(element: Element, target: number) {
     let current = 0;
     const increment = Math.ceil(target / 30);
@@ -105,6 +194,37 @@ const hiringCount = validCompanies.filter((company) => company.jobs_url).length;
       }
     }, stepTime);
   }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentTheme = getCurrentTheme();
+    applyTheme(currentTheme);
+    initializeTheme(currentTheme);
+
+    // Set dropdown value
+    const dropdown = document.getElementById('theme-dropdown') as HTMLSelectElement;
+    if (dropdown) {
+      dropdown.value = currentTheme;
+    }
+
+    // Animate counters
+    const statNumbers = document.querySelectorAll('.stat-number');
+    statNumbers.forEach(stat => {
+      const target = parseInt(stat.getAttribute('data-target') || '0');
+      animateCounter(stat, target);
+    });
+  });
+
+  // Handle theme changes
+  const dropdown = document.getElementById('theme-dropdown');
+  if (dropdown) {
+    dropdown.addEventListener('change', (e) => {
+      const newTheme = (e.target as HTMLSelectElement).value;
+      const url = new URL(window.location.href);
+      url.searchParams.set('theme', newTheme);
+      window.location.href = url.toString();
+    });
+  }
 </script>
 
 <style>
@@ -117,8 +237,6 @@ const hiringCount = validCompanies.filter((company) => company.jobs_url).length;
   }
 
   .stat-badge {
-    background: linear-gradient(135deg, #ff0055, #ff6b00);
-    border: 5px solid #000;
     border-radius: 50%;
     width: 180px;
     height: 180px;
@@ -126,36 +244,17 @@ const hiringCount = validCompanies.filter((company) => company.jobs_url).length;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
     position: relative;
     animation: badge-pop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
-  .hiring-badge {
-    background: linear-gradient(135deg, #00d9ff, #0080ff);
-  }
-
-  .stat-badge::before {
-    content: '';
-    position: absolute;
-    inset: 8px;
-    border: 3px dashed rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-  }
-
   .stat-number {
-    font-family: 'Impact', 'Arial Black', sans-serif;
     font-size: 3.5rem;
-    color: #ffff00;
-    text-shadow: 3px 3px 0 #000;
     line-height: 1;
   }
 
   .stat-label {
-    font-family: 'Impact', 'Arial Black', sans-serif;
     font-size: 0.9rem;
-    color: #fff;
-    text-shadow: 2px 2px 0 #000;
     letter-spacing: 1px;
     margin-top: 0.5rem;
     text-align: center;

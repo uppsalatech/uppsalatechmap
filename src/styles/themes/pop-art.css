@@ -107,14 +107,6 @@ body::before {
 .pop-art-card:hover {
   transform: translate(-4px, -4px) !important;
   box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.4) !important;
-  animation: card-shake 0.5s ease;
-}
-
-@keyframes card-shake {
-  0%, 100% { transform: translate(-4px, -4px) rotate(0deg); }
-  25% { transform: translate(-4px, -4px) rotate(0.5deg); }
-  50% { transform: translate(-4px, -4px) rotate(-0.5deg); }
-  75% { transform: translate(-4px, -4px) rotate(0.5deg); }
 }
 
 .pop-art-card::after {

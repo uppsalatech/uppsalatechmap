@@ -1,0 +1,86 @@
+---
+import { themes } from '../config/themes';
+
+const themeList = Object.values(themes);
+---
+
+<div class="theme-selector">
+  <label for="theme-dropdown">Theme:</label>
+  <select id="theme-dropdown" class="theme-dropdown">
+    {themeList.map((theme) => (
+      <option value={theme.id}>
+        {theme.name} 
+      </option>
+    ))}
+  </select>
+</div>
+
+<style>
+  .theme-selector {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+  }
+
+  label {
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #334155;
+  }
+
+  .theme-dropdown {
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.5rem 2rem 0.5rem 0.8rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    background: #fff;
+    color: #334155;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23334155' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+  }
+
+  .theme-dropdown:hover {
+    border-color: #0084ff;
+  }
+
+  .theme-dropdown:focus {
+    outline: none;
+    border-color: #0084ff;
+    box-shadow: 0 0 0 3px rgba(0, 132, 255, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .theme-selector {
+      top: 10px;
+      right: 10px;
+      padding: 0.6rem 1rem;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.3rem;
+    }
+
+    label {
+      font-size: 0.8rem;
+    }
+
+    .theme-dropdown {
+      font-size: 0.85rem;
+      padding: 0.4rem 1.8rem 0.4rem 0.6rem;
+    }
+  }
+</style>
