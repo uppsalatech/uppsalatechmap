@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import companies from '../data/companies.json';
+import '../styles/global.css';
+---
+
+<Layout title="Uppsala Tech Map">
+  <h2 style="margin-top: 2rem;">Discover tech companies in Uppsala</h2>
+  <p>
+    Join the conversation in the Uppsala Tech Community Slack by emailing
+    <a href="mailto:hello@uppsalatech.se">hello@uppsalatech.se</a>.
+  </p>
+
+  <div class="cards">
+    {companies
+      .filter((company) => company.name)
+      .map((company) => {
+        const id = company.name!.replace(/\s/g, '');
+        return (
+          <div class="card" id={id}>
+            <a href={company.url} class="name">{company.name}</a>
+            <p>{company.description}</p>
+            {company.jobs_url && (
+              <a href={company.jobs_url} class="jobs_url">Open positions</a>
+            )}
+          </div>
+        );
+      })}
+  </div>
+
+  <div style="margin-top: 30px; text-align: center;">
+    <a href="https://github.com/uppsalatech/uppsalatechmap/edit/master/companies.json">
+      Add your own company to the list
+    </a>
+  </div>
+</Layout>
