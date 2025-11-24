@@ -2,13 +2,18 @@
 import Layout from '../layouts/Layout.astro';
 import companies from '../data/companies.json';
 import '../styles/global.css';
+import '../styles/pop-art.css';
 ---
 
 <Layout title="Uppsala Tech Map">
-  <h2 style="margin-top: 2rem;">Discover tech companies in Uppsala</h2>
+  <div class="pop-art-header" style="background-color: #ff0055; background-image: linear-gradient(135deg, #ff0055 0%, #ff6b00 100%); margin-bottom: 1.45rem; padding: 2rem 1.0875rem; text-align: center;">
+    <h1 class="pop-art-title" style="margin: 0; font-family: Impact, Arial Black, sans-serif; font-size: 2.5rem; color: #ffff00;">Uppsala Tech Map</h1>
+  </div>
+
+  <h2 class="pop-art-title" style="margin-top: 2rem;">Discover Tech Companies!</h2>
   <p>
     Join the conversation in the Uppsala Tech Community Slack by emailing
-    <a href="mailto:hello@uppsalatech.se">hello@uppsalatech.se</a>.
+    <a href="mailto:hello@uppsalatech.se" style="color: #ff0055; font-weight: bold;">hello@uppsalatech.se</a>.
   </p>
 
   <div class="cards">
@@ -17,11 +22,11 @@ import '../styles/global.css';
       .map((company) => {
         const id = company.name!.replace(/\s/g, '');
         return (
-          <div class="card" id={id}>
-            <a href={company.url} class="name">{company.name}</a>
+          <div class="card pop-art-card" id={id}>
+            <a href={company.url} class="name pop-art-name">{company.name}</a>
             <p>{company.description}</p>
             {company.jobs_url && (
-              <a href={company.jobs_url} class="jobs_url">Open positions</a>
+              <a href={company.jobs_url} class="jobs_url pop-art-jobs">Hiring!</a>
             )}
           </div>
         );
@@ -29,7 +34,7 @@ import '../styles/global.css';
   </div>
 
   <div style="margin-top: 30px; text-align: center;">
-    <a href="https://github.com/uppsalatech/uppsalatechmap/edit/master/companies.json">
+    <a href="https://github.com/uppsalatech/uppsalatechmap/edit/master/companies.json" style="color: #ff0055; font-weight: bold; text-decoration: underline;">
       Add your own company to the list
     </a>
   </div>

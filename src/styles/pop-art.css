@@ -1,0 +1,195 @@
+/* 1960s Pop Art Theme - Bold primary colors, Ben-Day dots, comic book style */
+
+body {
+  background: #fff;
+  position: relative;
+}
+
+/* Ben-Day dot pattern background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle, #00d9ff 1px, transparent 1px);
+  background-size: 8px 8px;
+  opacity: 0.15;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.pop-art-header {
+  background: #ff0055 !important;
+  background-image: linear-gradient(135deg, #ff0055 0%, #ff6b00 100%) !important;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 8px solid #000;
+}
+
+.pop-art-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.3) 1.5px, transparent 1.5px);
+  background-size: 12px 12px;
+  pointer-events: none;
+}
+
+.pop-art-header h1 {
+  position: relative;
+  z-index: 1;
+  text-shadow:
+    4px 4px 0 #000,
+    6px 6px 0 rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+}
+
+.pop-art-title {
+  font-family: 'Impact', 'Arial Black', sans-serif !important;
+  font-size: 2.5rem !important;
+  text-transform: uppercase;
+  color: #ffff00 !important;
+  text-shadow:
+    3px 3px 0 #000,
+    5px 5px 0 rgba(0, 0, 0, 0.3) !important;
+  letter-spacing: 3px;
+  margin-bottom: 0.5rem !important;
+}
+
+.pop-art-subtitle {
+  font-family: 'Impact', 'Arial Black', sans-serif !important;
+  font-size: 1.3rem !important;
+  color: #fff !important;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0 #000 !important;
+  letter-spacing: 2px;
+}
+
+.pop-art-card {
+  background: #fff !important;
+  border: 6px solid #000 !important;
+  border-radius: 0 !important;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.3) !important;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.pop-art-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle, rgba(255,0,85,0.08) 1px, transparent 1px);
+  background-size: 6px 6px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pop-art-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.pop-art-card:hover {
+  transform: translate(-4px, -4px) !important;
+  box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.4) !important;
+}
+
+.pop-art-card::after {
+  content: 'POW!';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 100px;
+  height: 100px;
+  background: #ffff00;
+  border: 4px solid #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ff0055;
+  transform: rotate(15deg);
+  opacity: 0;
+  transition: opacity 0.3s ease, top 0.3s ease, right 0.3s ease;
+  z-index: 2;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.pop-art-card:hover::after {
+  opacity: 1;
+  top: -20px;
+  right: -20px;
+}
+
+.pop-art-name {
+  font-family: 'Impact', 'Arial Black', sans-serif !important;
+  font-size: 1.8rem !important;
+  color: #000 !important;
+  text-transform: uppercase !important;
+  border-bottom: 4px solid #ff0055 !important;
+  padding-bottom: 0.5rem !important;
+  letter-spacing: 1px;
+}
+
+.pop-art-name:hover {
+  color: #ff0055 !important;
+  border-bottom-color: #00d9ff !important;
+}
+
+.pop-art-card p {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+.pop-art-jobs {
+  display: inline-block;
+  padding: 0.5rem 1.5rem !important;
+  background: #00d9ff !important;
+  color: #000 !important;
+  font-family: 'Arial Black', sans-serif !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  border: 3px solid #000 !important;
+  border-radius: 0 !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 1px;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.pop-art-jobs:hover {
+  background: #ffff00 !important;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* Comic panel effect for cards */
+.cards {
+  position: relative;
+}
+
+.cards::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 3px dashed rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  z-index: -1;
+}
