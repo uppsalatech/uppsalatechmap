@@ -95,7 +95,7 @@ a:hover {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-auto-rows: auto;
   grid-gap: 2rem;
 }
@@ -151,6 +151,7 @@ a:hover {
 }
 
 .name {
+  line-height: 1.3em;
   font-size: 1.5rem;
   margin-bottom: 1rem;
   display: inline-block;

@@ -78,6 +78,12 @@ body::before {
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  --action-color: #ffff00;
+  --action-rotation: 15deg;
+  --action-top: -40px;
+  --action-right: -40px;
+  --action-bottom: auto;
+  --action-left: auto;
 }
 
 .pop-art-card::before {
@@ -101,16 +107,26 @@ body::before {
 .pop-art-card:hover {
   transform: translate(-4px, -4px) !important;
   box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.4) !important;
+  animation: card-shake 0.5s ease;
+}
+
+@keyframes card-shake {
+  0%, 100% { transform: translate(-4px, -4px) rotate(0deg); }
+  25% { transform: translate(-4px, -4px) rotate(0.5deg); }
+  50% { transform: translate(-4px, -4px) rotate(-0.5deg); }
+  75% { transform: translate(-4px, -4px) rotate(0.5deg); }
 }
 
 .pop-art-card::after {
-  content: 'POW!';
+  content: attr(data-action-word);
   position: absolute;
-  top: -40px;
-  right: -40px;
+  top: var(--action-top);
+  right: var(--action-right);
+  bottom: var(--action-bottom);
+  left: var(--action-left);
   width: 100px;
   height: 100px;
-  background: #ffff00;
+  background: var(--action-color, #ffff00);
   border: 4px solid #000;
   border-radius: 50%;
   display: flex;
@@ -119,18 +135,26 @@ body::before {
   font-family: 'Impact', 'Arial Black', sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
-  color: #ff0055;
-  transform: rotate(15deg);
+  color: #000;
+  transform: rotate(var(--action-rotation, 15deg));
   opacity: 0;
-  transition: opacity 0.3s ease, top 0.3s ease, right 0.3s ease;
+  transition: opacity 0.3s ease, top 0.3s ease, right 0.3s ease, bottom 0.3s ease, left 0.3s ease;
   z-index: 2;
-  text-shadow: 2px 2px 0 #000;
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
 }
 
 .pop-art-card:hover::after {
   opacity: 1;
-  top: -20px;
-  right: -20px;
+  top: var(--action-top-hover);
+  right: var(--action-right-hover);
+  bottom: var(--action-bottom-hover);
+  left: var(--action-left-hover);
+  animation: action-pulse 0.6s ease-in-out infinite;
+}
+
+@keyframes action-pulse {
+  0%, 100% { transform: rotate(var(--action-rotation, 15deg)) scale(1); }
+  50% { transform: rotate(var(--action-rotation, 15deg)) scale(1.05); }
 }
 
 .pop-art-name {

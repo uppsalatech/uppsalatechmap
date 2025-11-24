@@ -18,7 +18,7 @@ const { title, description = "Discover tech companies in Uppsala" } = Astro.prop
     <title>{title}</title>
   </head>
   <body>
-    <header>
+    <header class="pop-art-header">
       <div class="header-content">
         <h1>
           <a href="/">{title}</a>
@@ -42,31 +42,89 @@ const { title, description = "Discover tech companies in Uppsala" } = Astro.prop
   }
 
   header {
-    background-color: #a4508b;
-    background-image: linear-gradient(326deg, #a4508b 0%, #5f0a87 74%);
+    background: linear-gradient(135deg, #ff0055 0%, #ff6b00 100%);
     margin-bottom: 1.45rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 8px solid #000;
+  }
+
+  /* Ben-Day dots pattern */
+  header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.3) 1.5px, transparent 1.5px);
+    background-size: 12px 12px;
+    pointer-events: none;
   }
 
   .header-content {
     margin: 0 auto;
-    max-width: 960px;
-    padding: 1.45rem 1.0875rem;
+    max-width: 1400px;
+    padding: 2rem 1.0875rem;
+    text-align: center;
   }
 
   header h1 {
     margin: 0;
+    position: relative;
+    z-index: 1;
   }
 
   header a {
-    color: white;
+    color: #ffff00;
     text-decoration: none;
-    font-family: 'Bungee Shade', sans-serif;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    text-shadow:
+      4px 4px 0 #000,
+      6px 6px 0 rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+    display: inline-block;
+    animation: header-pop 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  @keyframes header-pop {
+    0% {
+      transform: scale(0.5) rotate(-10deg);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(1.05) rotate(2deg);
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+  }
+
+  header a:hover {
+    animation: header-glow 1s ease-in-out infinite;
+  }
+
+  @keyframes header-glow {
+    0%, 100% {
+      text-shadow:
+        4px 4px 0 #000,
+        6px 6px 0 rgba(0, 0, 0, 0.3);
+    }
+    50% {
+      text-shadow:
+        4px 4px 0 #000,
+        6px 6px 0 rgba(0, 0, 0, 0.3),
+        0 0 20px #ffff00;
+    }
   }
 
   .container {
     margin: 0 auto;
-    max-width: 960px;
-    padding: 0 1.0875rem 1.45rem;
+    max-width: 1400px;
+    padding: 0 2rem 1.45rem;
   }
 
   footer {
