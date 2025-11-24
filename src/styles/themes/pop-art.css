@@ -209,3 +209,40 @@ body::before {
   pointer-events: none;
   z-index: -1;
 }
+
+/* Pop Art Stat Badges */
+.pop-art-stat-badge {
+  background: linear-gradient(135deg, #ff0055, #ff6b00);
+  border: 5px solid #000;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
+}
+
+.pop-art-stat-badge::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 3px dashed rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+}
+
+.pop-art-stat-badge.hiring-badge {
+  background: linear-gradient(135deg, #00d9ff, #0080ff);
+}
+
+.pop-art-stat-badge .stat-number {
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  color: #ffff00;
+  text-shadow: 3px 3px 0 #000;
+}
+
+.pop-art-stat-badge .stat-label {
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  color: #fff;
+  text-shadow: 2px 2px 0 #000;
+}
+
+/* Pop Art Links */
+.pop-art-link {
+  color: #ff0055;
+  font-weight: bold;
+}

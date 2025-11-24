@@ -54,165 +54,23 @@ const hiringCount = validCompanies.filter((company) => company.jobs_url).length;
 </Layout>
 
 <script>
-  import { themes, defaultTheme } from '../config/themes';
-
-  // Get current theme from URL or localStorage
-  function getCurrentTheme(): string {
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlTheme = urlParams.get('theme');
-
-    if (urlTheme && themes[urlTheme]) {
-      localStorage.setItem('theme', urlTheme);
-      return urlTheme;
-    }
-
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme && themes[storedTheme]) {
-      return storedTheme;
-    }
-
-    return defaultTheme;
-  }
-
-  // Apply theme classes
-  function applyTheme(themeId: string) {
-    const theme = themes[themeId];
-    if (!theme) return;
-
-    // Update header
-    const header = document.querySelector('header');
-    if (header) {
-      header.className = `${themeId}-header`;
-    }
-
-    // Update all theme-targeted elements
-    document.querySelectorAll('[data-theme-target="card"]').forEach(el => {
-      el.className = `card ${themeId}-card`;
-    });
-
-    document.querySelectorAll('[data-theme-target="name"]').forEach(el => {
-      el.className = `name ${themeId}-name`;
-    });
-
-    document.querySelectorAll('[data-theme-target="jobs"]').forEach(el => {
-      el.className = `jobs_url ${themeId}-jobs`;
-    });
-
-    document.querySelectorAll('[data-theme-target="title"]').forEach(el => {
-      el.className = `${themeId}-title`;
-    });
-
-    document.querySelectorAll('[data-theme-target="stat-badge"]').forEach((el, index) => {
-      const baseClass = index === 0 ? 'stat-badge' : 'stat-badge hiring-badge';
-      el.className = `${baseClass} ${themeId}-stat-badge`;
-    });
-
-    document.querySelectorAll('[data-theme-target="link"]').forEach(el => {
-      if (themeId === 'pop-art') {
-        (el as HTMLElement).style.color = '#ff0055';
-      } else if (themeId === 'web2') {
-        (el as HTMLElement).style.color = '#0084ff';
-      }
-    });
-  }
-
-  // Theme-specific initialization
-  function initializeTheme(themeId: string) {
-    const theme = themes[themeId];
-    if (!theme) return;
-
-    const cards = document.querySelectorAll<HTMLElement>('[data-theme-target="card"]');
-
-    cards.forEach((card, index) => {
-      // Add entrance animation delay
-      const delay = index * 50;
-      card.style.animationDelay = `${delay}ms`;
-      card.classList.add('card-entrance');
-
-      if (themeId === 'pop-art' && theme.actionWords && theme.colors) {
-        // Pop Art specific: random action words
-        const randomWord = theme.actionWords[Math.floor(Math.random() * theme.actionWords.length)];
-        const randomColor = theme.colors[Math.floor(Math.random() * theme.colors.length)];
-        const randomRotation = Math.floor(Math.random() * 16) + 10;
-
-        const positions = [
-          { top: '-40px', right: '-40px', bottom: 'auto', left: 'auto', topHover: '-20px', rightHover: '-20px', bottomHover: 'auto', leftHover: 'auto' },
-          { top: '-40px', right: 'auto', bottom: 'auto', left: '-40px', topHover: '-20px', rightHover: 'auto', bottomHover: 'auto', leftHover: '-20px' },
-          { top: 'auto', right: '-40px', bottom: '-40px', left: 'auto', topHover: 'auto', rightHover: '-20px', bottomHover: '-20px', leftHover: 'auto' },
-          { top: 'auto', right: 'auto', bottom: '-40px', left: '-40px', topHover: 'auto', rightHover: 'auto', bottomHover: '-20px', leftHover: '-20px' }
-        ];
-        const randomPosition = positions[Math.floor(Math.random() * positions.length)];
-
-        card.setAttribute('data-action-word', randomWord);
-        card.style.setProperty('--action-color', randomColor);
-        card.style.setProperty('--action-rotation', `${randomRotation}deg`);
-        card.style.setProperty('--action-top', randomPosition.top);
-        card.style.setProperty('--action-right', randomPosition.right);
-        card.style.setProperty('--action-bottom', randomPosition.bottom);
-        card.style.setProperty('--action-left', randomPosition.left);
-        card.style.setProperty('--action-top-hover', randomPosition.topHover);
-        card.style.setProperty('--action-right-hover', randomPosition.rightHover);
-        card.style.setProperty('--action-bottom-hover', randomPosition.bottomHover);
-        card.style.setProperty('--action-left-hover', randomPosition.leftHover);
-      } else if (themeId === 'web2' && theme.colors) {
-        // Web 2.0 specific: glossy badge colors
-        const colorPairs: Array<[string, string]> = [
-          ['#0084ff', '#0066cc'],
-          ['#ff6b35', '#e65100'],
-          ['#00d084', '#00a86b'],
-          ['#9b59b6', '#8e44ad']
-        ];
-        const randomPair = colorPairs[Math.floor(Math.random() * colorPairs.length)];
-
-        const positions = ['12px', 'auto'];
-        const randomPos = Math.floor(Math.random() * 4);
-
-        card.style.setProperty('--action-color', randomPair[0]);
-        card.style.setProperty('--action-color-dark', randomPair[1]);
-        card.style.setProperty('--action-top', randomPos < 2 ? '12px' : 'auto');
-        card.style.setProperty('--action-right', randomPos % 2 === 0 ? '12px' : 'auto');
-        card.style.setProperty('--action-bottom', randomPos >= 2 ? '12px' : 'auto');
-        card.style.setProperty('--action-left', randomPos % 2 === 1 ? '12px' : 'auto');
-      }
-    });
-  }
-
-  // Animate counters
-  function animateCounter(element: Element, target: number) {
-    let current = 0;
-    const increment = Math.ceil(target / 30);
-    const duration = 1000;
-    const stepTime = duration / (target / increment);
-
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        element.textContent = target.toString();
-        clearInterval(timer);
-      } else {
-        element.textContent = current.toString();
-      }
-    }, stepTime);
-  }
+  import { getCurrentTheme, applyTheme } from '../lib/themeManager';
+  import { initializeTheme } from '../lib/themeInitializers';
 
   // Initialize on page load
   document.addEventListener('DOMContentLoaded', () => {
     const currentTheme = getCurrentTheme();
     applyTheme(currentTheme);
-    initializeTheme(currentTheme);
+
+    // Initialize theme-specific features
+    const cards = document.querySelectorAll<HTMLElement>('[data-theme-target="card"]');
+    initializeTheme(currentTheme, cards);
 
     // Set dropdown value
     const dropdown = document.getElementById('theme-dropdown') as HTMLSelectElement;
     if (dropdown) {
       dropdown.value = currentTheme;
     }
-
-    // Animate counters
-    const statNumbers = document.querySelectorAll('.stat-number');
-    statNumbers.forEach(stat => {
-      const target = parseInt(stat.getAttribute('data-target') || '0');
-      animateCounter(stat, target);
-    });
   });
 
   // Handle theme changes
@@ -228,38 +86,7 @@ const hiringCount = validCompanies.filter((company) => company.jobs_url).length;
 </script>
 
 <style>
-  .hero-stats {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    margin: 2rem 0;
-    flex-wrap: wrap;
-  }
-
-  .stat-badge {
-    border-radius: 50%;
-    width: 180px;
-    height: 180px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    animation: badge-pop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-
-  .stat-number {
-    font-size: 3.5rem;
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    margin-top: 0.5rem;
-    text-align: center;
-  }
-
+ 
   @keyframes badge-pop {
     0% {
       transform: scale(0) rotate(-180deg);

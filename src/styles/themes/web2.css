@@ -269,3 +269,9 @@ h2.web2-title {
 .web2-card:hover {
   background: linear-gradient(to bottom, #ffffff 0%, #f0f4f8 100%) !important;
 }
+
+/* Web 2.0 Links */
+.web2-link {
+  color: #0084ff;
+  font-weight: 600;
+}
